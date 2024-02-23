@@ -1,5 +1,19 @@
 {
   "downloadBook": "تحميل الكتاب",
+  "search": {
+    "siteSearch": "البحث في الموقع",
+    "searchResultsFor": "نتائج البحث عن",
+    "resultsFound": "تم العثور على نتائج",
+    "noBooksToPreview": "لا توجد كتب للمعاينة",
+    "by": "بواسطة",
+    "reviews": "مراجعات",
+    "author": "المؤلف",
+    "level": "المستوى",
+    "books": "كتب",
+    "courses": "الدورات",
+    "choose": "اختر",
+    "in":"فى"
+  },
   "homePage": {
     "searchFor": "تبحث عن",
     "selectPlaceholder": "اضغط للاختيار",
@@ -17,7 +31,16 @@
     "releaseDate": "تاريخ الاصدار",
     "mostInteractive": "الاكثر تفاعلا",
     "books": "الكتب",
-    "mostDownloaded": "الاكثر تنزيلا"
+    "mostDownloaded": "الاكثر تنزيلا",
+    "sort_by_date": "التاريخ",
+    "sort_by_downloads": "التحميلات",
+    "sort_by_review_count": "عدد المراجعات",
+    "sort_by_average_rating": "التقييم"
+  },
+  "projectpreview": {
+    "addnewproject": "اضف مشروعك",
+    "showcode": "اظهر الكود",
+    "add code to show it": "اضف الكود هنا لعرضه"
   },
   "programmingQuestionsPage": {
     "pageTitle": "أسئلة البرمجة",
@@ -34,6 +57,7 @@
     "sectionSubTitle": "أقسام فرعية"
   },
   "header": {
+    "suggest": "اضف اقتراحا",
     "home": "الصفحة الرئيسية",
     "courses": "دورات",
     "books": "كتب",
@@ -44,7 +68,10 @@
     "addCategory": "إضافة تصنيف",
     "login": "تسجيل الدخول",
     "register": "حساب جديد",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "profile": "الملف الشخصي",
+    "project": "المشروع",
+    "admin": "الادمن"
   },
   "loginPage": {
     "loginTitle": "تسجيل الدخول",
@@ -115,6 +142,10 @@
     "noCoursesMessage": "لا يوجد دورات لعرضها حالياً"
   },
   "addCategory": {
+    "editCategory": "تعديل الفئة",
+    "deleteCategoryBtn": "حذف الفئة",
+    "deletedCategoryMsg": "تم حذف الفئة بنجاح",
+    "categoryImage": "رفع صوره",
     "addNewCategory": "إضافة تصنيف جديد",
     "categoryName": "اسم التصنيف",
     "categoryNameRequired": "حقل اسم التصنيف مطلوب",
@@ -132,21 +163,37 @@
     "downloadBook": "تحميل الكتاب",
     "readerComments": "تعليقات القراء",
     "addComment": "إضافة تعليق",
-    "commentPlaceholder": "أضف تعليقًا..."
+    "commentPlaceholder": "أضف تعليقًا...",
+    "noReviews": "لا يوجد تعليقات حتى الان..."
   },
   "addCourse": {
     "addNewCourse": "إضافة دورة جديدة",
     "courseName": "اسم الدورة",
+    "courseSubTitle": "عنوان فرعى",
     "courseDescription": "وصف الدورة",
-    "instructor": "اسم المحاضر",
+    "instructor": "المدرب",
     "coursePrice": "سعر الدورة",
-    "selectCategory": "تصنيف الدورة",
-    "whatYouWillLearn": "ماذا ستتعلم في هذه الدورة؟",
-    "addLearnPoint": "إضافة نقطة جديدة",
-    "removeLearnPoint": "حذف",
-    "coverImage": "تحميل صورة الغلاف",
-    "dropzoneText": "اسحب وأفلت صورة الغلاف هنا أو انقر لاختيار الصورة",
-    "addCourseButton": "إضافة الدورة"
+    "selectCategory": "اختر الفئة",
+    "courseDuration": "المدة",
+    "days": "أيام",
+    "hours": "ساعات",
+    "courseLevel": "مستوى الدورة",
+    "selectCourseLevel": "مستوى الدورة",
+    "beginner": "مبتدئ",
+    "intermediate": "متوسط",
+    "advanced": "متقدم",
+    "courseLink": "رابط الدورة",
+    "courseDurationUnit": "وحدة المدة",
+    "selectDuration": "اختر المدة",
+    "courseDurationDays": "عدد الأيام",
+    "courseDurationHours": "عدد الساعات",
+    "whatYouWillLearn": "ما ستتعلمه",
+    "removeLearnPoint": "إزالة",
+    "addLearnPoint": "إضافة نقطة",
+    "coverImage": "صورة الغلاف",
+    "dropzoneText": "اسحب وأفلت الصورة هنا أو انقر لتحميلها",
+    "addCourseButton": "إضافة الدورة",
+    "addedCourseMsg": "تمت إضافة الدورة بنجاح"
   },
   "editCourse": {
     "editCourse": "تعديل الدورة",
@@ -191,17 +238,44 @@
   },
   "courseDetails": {
     "aboutCourse": "عن الدورة",
-    "whatYouWillLearn": "ماذا ستتعلم في هذه الدورة؟"
+    "whatYouWillLearn": "ما ستتعلمه",
+    "level": "المستوى",
+    "duration": "المدة",
+    "link": "رابط الدوره",
+    "addRate": "اضف تقيمك",
+    "Rate": "التقييم"
+  },
+  "Rate": {
+    "addRate": "اضف تقيمك",
+    "editRate": "اضف تقيمك",
+    "Rate": "التقييم",
+    "yourRate": "تقيمك"
+  },
+  "Suggest": {
+    "visit": "زياره",
+    "ManageSuggestedCourses": "إدارة الدورات المقترحة",
+    "ManageSuggestedBooks": "إدارة الكتب المقترحة",
+    "accept": "موافقه",
+    "reject": "رفض",
+    "showSuggestions": " عرض الاقتراحات",
+    "show": " عرض",
+    "choose": "اختر",
+    "book": "كتاب",
+    "course": "دورة",
+    "suggestBook": "اقترح كتاب",
+    "suggestCourse": "اقترح دورة"
   },
   "timeAgo": {
     "now": "الآن",
     "minutesAgo": "{{count}} دقيقة مضت",
-    "hoursAgo": "{{count}} ساعة{{count === 1 ? '' : ' مضت'}}",
+    "hoursAgo": "{{count}} ساعةمضت",
     "daysAgo": "{{count}} يوم مضى",
     "monthsAgo": "{{count}} شهر مضى",
     "yearsAgo": "{{count}} سنة مضت"
   },
   "questionSection": {
+    "any your question?": "؟ هل لديك اسئلة",
+    "join here": "انضم هنا",
     "question": "السؤال",
     "answers": "اجابات القراء",
     "noAnswers": "لا توجد اجابات حاليًا.",

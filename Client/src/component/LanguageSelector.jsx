@@ -17,14 +17,15 @@ const LanguageSelector = ({ onChange }) => {
   };
 
   return (
-    <select onChange={handleLanguageChange} id="button1" className="btn" 
+    <select onChange={handleLanguageChange} id="nav-btn" className="btn" 
     style={selectStyle}
     >
-      <option value="ar" style={optionStyle}>
-        Arabic
-      </option>
       <option value="en" style={optionStyle}>
         English
+      </option>
+
+      <option value="ar" style={optionStyle}>
+        Arabic
       </option>
     </select>
   );

@@ -10,6 +10,9 @@ module.exports = {
             'any.required': 'Last name is required.',
             'string.empty': 'Last name must not be empty.',
         }),
+        interests: Joi.array().items(Joi.string()).required().messages({
+            'any.required':  'Interests must not be empty.',
+        }),
         email: Joi.string().email().required().messages({
             'any.required': 'Email is required.',
             'string.empty': 'Email must not be empty.',

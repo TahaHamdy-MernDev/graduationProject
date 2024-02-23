@@ -3,27 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const path = require("path");
 const storageEngine = multer.diskStorage({
   destination: function (req, file, cb) {
-    let dest;
-    switch (req.baseUrl) {
-      case '/api/v1/books':
-        dest = 'src/uploads/books';
-        break;
-      case '/api/v1/courses':
-        dest = 'src/uploads/course';
-        break;
-    //   case '/api/v1.0/jobs':
-    //     dest = 'src/uploads/job';
-    //     break;
-    //   case '/api/v1.0/certificates':
-    //     dest = 'src/uploads/certificates';
-    //     break;
-    //   case '/api/v1.0/course':
-    //     dest = 'src/uploads/course';
-    //     break;
-      default:
-        dest = 'src/uploads';
-    }
-    cb(null, dest);
+    cb(null, path.join(__dirname, "../uploads"));
   },
 
   filename: (req, file, cb) => {
@@ -31,7 +11,7 @@ const storageEngine = multer.diskStorage({
   },
 });
 const checkFileType = function (file, cb) {
-  const fileTypes = /jpeg|jpg|png|gif|svg|pdf/;
+  const fileTypes = /jpeg|jpg|png|gif|svg|pdf|zip|rar/;
   const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
   const mimeType = fileTypes.test(file.mimetype);
   if (mimeType && extName) {
@@ -40,12 +20,6 @@ const checkFileType = function (file, cb) {
     cb("Error: You can Only Upload Images!!");
   }
 };
-const upload = multer({
-  storage: storageEngine,
-  limits: { fileSize: 10000000 },
-  fileFilter: (req, file, cb) => {
-    checkFileType(file, cb);
-  },
-});
+const upload = multer({ storage: storageEngine,});
 module.exports = { upload };
 // upload.array("images", 5)

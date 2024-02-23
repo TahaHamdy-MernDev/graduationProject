@@ -3,15 +3,30 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
   {
-    firstName: { type: String,  },
+    firstName: { type: String, },
     lastName: { type: String, },
     email: { type: String, unique: true },
+    bio: {
+      type: String,
+    },
     password: { type: String },
     ssoAuth: {
       googleId: { type: String },
     },
     role: { type: String, enum: ["Admin", "User"], default: "User" },
-    profileImage: { type: String },
+    profileImage: { 
+      type: Object,
+      default: {
+        url: "https://res.cloudinary.com/dfjnpfcqz/image/upload/v1708464934/avatar_zjpvvz.png",
+        publicId: null,
+      },
+    },
+    bookWishlist: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
+    courseWishlist: [{ type: Schema.Types.ObjectId, ref: 'Course' }], 
+    followers: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    following: [{ type: Schema.Types.ObjectId, ref :'User' }], 
+    skills: [{ type: String }],
+    interests: [ { type: Schema.Types.ObjectId, ref: "Category" }],
   },
   { timestamps: true }
 );
@@ -19,12 +34,25 @@ const userSchema = new Schema(
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
   }
   next();
 });
+// userSchema.pre("find", function (next) {
+//   this.populate('bookWishlist.oid')
+//   console.log(this);
+//   next();
+// });
+userSchema.pre("findOne", function (next) {
+  this.populate('bookWishlist')
+  .populate('courseWishlist')
+  // .exec()
+  // console.log(this.bookWishlist);
+  next();
+});
+
 userSchema.methods.comparePassword = async function (password) {
-  console.log(this);
   return bcrypt.compare(password, this.password);
 };
 

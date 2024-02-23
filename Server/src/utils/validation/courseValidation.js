@@ -17,10 +17,11 @@ module.exports = {
       "any.required": "وصف الدورة مطلوب",
       "string.empty": "يجب ألا يكون وصف الدورة فارغًا",
     }),
-    subDescription: Joi.string().required().messages({
+    courseSubTitle: Joi.string().required().messages({
       "any.required": "الوصف مصغر مطلوب",
       "string.empty": "يجب ألا يكون وصف الدورة فارغًا",
     }),
+    Suggestion:Joi.boolean(),
     category: Joi.string().required().messages({
       'any.required': 'Category is required.',
       'string.empty': 'Category cannot be empty.',
@@ -29,6 +30,22 @@ module.exports = {
       "array.base": "يجب أن يكون مصفوفة",
     }),
     image: Joi.string(),
+    link: Joi.string(),
+    level: Joi.string().valid("beginner", "intermediate", "advanced").messages({
+      "any.only": "يجب أن يكون مستوى الدورة beginner أو intermediate أو advanced",
+    }),
+    duration: Joi.object({
+      value: Joi.number().required().messages({
+        "any.required": "مدة الدورة مطلوبة",
+        "number.base": "يجب أن يكون مدة الدورة رقمًا",
+      }),
+      unit: Joi.string().valid("days", "hours").required().messages({
+        "any.required": "وحدة المدة مطلوبة",
+        "any.only": "يجب أن تكون وحدة المدة days أو hours",
+      }),
+    }).required().messages({
+      "any.required": "مدة الدورة مطلوبة",
+    }),
   }),
   updateCourseKeys: Joi.object({
     name: Joi.string().messages({
@@ -37,6 +54,7 @@ module.exports = {
     price: Joi.number().messages({
       "number.base": "يجب أن يكون سعر الدورة رقمًا",
     }),
+    Suggestion:Joi.boolean(),
     category: Joi.string().messages({
       'string.empty': 'Category cannot be empty.',
     }),
@@ -49,10 +67,26 @@ module.exports = {
     whatUWillLearn: Joi.array().items(Joi.string()).messages({
       "array.base": "يجب أن يكون مصفوفة",
     }),
-    subDescription: Joi.string().messages({
+    courseSubTitle: Joi.string().messages({
   
       "string.empty": "يجب ألا يكون وصف الدورة المصغر فارغًا",
     }),
     image: Joi.string(),
+    link: Joi.string(),
+    level: Joi.string().valid("beginner", "intermediate", "advanced").messages({
+      "any.only": "يجب أن يكون مستوى الدورة beginner أو intermediate أو advanced",
+    }),
+    duration: Joi.object({
+      value: Joi.number().required().messages({
+        "any.required": "مدة الدورة مطلوبة",
+        "number.base": "يجب أن يكون مدة الدورة رقمًا",
+      }),
+      unit: Joi.string().valid("days", "hours").required().messages({
+        "any.required": "وحدة المدة مطلوبة",
+        "any.only": "يجب أن تكون وحدة المدة days أو hours",
+      }),
+    }).required().messages({
+      "any.required": "مدة الدورة مطلوبة",
+    }),
   }),
 };

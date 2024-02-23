@@ -30,8 +30,8 @@ function Codelang() {
                   <img src={Logo1} alt="logo-lang" />
                   <img src={Logo2} alt="logo-lang" />
                   <img src={Logo3} alt="logo-lang" />
-                  <img src={Logo4} alt="logo-lang" />
                   <img src={Logo9} alt="logo-lang" />
+                  <img src={Logo4} alt="logo-lang" />
                 </div>
                 <div className="link-slide">
                   <div className="content-slide" id="div4">
@@ -156,37 +156,14 @@ function Codelang() {
               </Carousel.Item>
 
               <Carousel.Item>
-                <div className="side-img">
+                <div className="side-img ">
                   <img src={Logo5} alt="logo-lang" />
                   <img src={Logo6} alt="logo-lang" />
                   <img src={Logo7} alt="logo-lang" />
-                  <img src={Logo8} alt="logo-lang" />
                   <img src={Logo10} alt="logo-lang" />
+                  <img src={Logo8} alt="logo-lang" />
                 </div>
                 <div className="link-slide">
-                  <div className="content-slide" id="div4">
-                    <h5>Formating</h5>
-                    <hr />
-
-                    <a href="#">abbr</a>
-
-                    <a href="#">code</a>
-
-                    <a href="#">font</a>
-
-                    <a href="#">intelIDEA</a>
-
-                    <a href="#">JavaFx</a>
-
-                    <a href="#">sbam</a>
-
-                    <a href="#">small</a>
-
-                    <a href="#">strong</a>
-
-                    <a href="#">strick</a>
-                  </div>
-
                   <div className="content-slide" id="div3">
                     <h3>Form/Tabel</h3>
                     <hr />
@@ -210,6 +187,80 @@ function Codelang() {
                     <a href="#">th</a>
 
                     <a href="#">tr</a>
+                  </div>
+                  <div className="content-slide" id="div4">
+                    <h5>Formating</h5>
+                    <hr />
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_intro.asp"
+                      rel="noreferrer"
+                    >
+                      Node.js Introduction
+                    </a>
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/shownodejs.asp?filename=demo_intro"
+                      rel="noreferrer"
+                    >
+                      createServer
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_modules.asp"
+                      rel="noreferrer"
+                    >
+                      Modules
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_http.asp"
+                      rel="noreferrer"
+                    >
+                      HTTP Module
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_filesystem.asp"
+                      rel="noreferrer"
+                    >
+                      File System Module
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_url.asp"
+                      rel="noreferrer"
+                    >
+                      URL Module
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_npm.asp"
+                      rel="noreferrer"
+                    >
+                      NPM
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_events.asp"
+                      rel="noreferrer"
+                    >
+                      Events
+                    </a>
+
+                    <a
+                      target="_blank"
+                      href="https://www.w3schools.com/nodejs/nodejs_uploadfiles.asp"
+                      rel="noreferrer"
+                    >
+                      Upload Files
+                    </a>
                   </div>
                   <div className="content-slide" id="div2">
                     <h3>Basic Tages</h3>

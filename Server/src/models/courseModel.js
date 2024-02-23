@@ -1,11 +1,11 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, Aggregate } = require("mongoose");
 
 const courseSchema = new Schema(
   {
     name: {
       type: String,
     },
-    subDescription: {
+    courseSubTitle: {
       type: String,
     },
     price: {
@@ -23,7 +23,49 @@ const courseSchema = new Schema(
         type: String,
       },
     ],
-    image: { type: String },
+    link: {
+      type: String,
+    },
+    level: {
+      type: String,
+      enum:["beginner","intermediate","advanced"]
+    },
+
+    ratings: {
+      type: [{
+        user: {          
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+        },
+        rating: {
+          type: Number,
+        },
+      }],
+      default: [],
+    },     
+    Suggestion: {
+      type: Boolean,
+      default: false
+    },                                                                                                        
+    duration: {
+      value: {
+        type: Number,
+        required: true,
+      },
+      unit: {
+        type: String,
+        enum: ["days", "hours"],
+        required: true,
+      },
+    },
+    image: {
+      type: Object,
+      default: {
+        url: "",
+        publicId: null,
+      },
+    },
+    keys: [{ type: String }],
     requestList: [{ type: Schema.Types.ObjectId, ref: "User" }],
   },
   {
@@ -32,8 +74,9 @@ const courseSchema = new Schema(
 );
 courseSchema.pre("find", function (next) {
   this.populate("category");
-  next();
+    next();
 });
-const Course = model("Course", courseSchema);
 
+const Course = model("Course", courseSchema);
+ 
 module.exports = Course;

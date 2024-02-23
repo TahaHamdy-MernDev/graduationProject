@@ -2,7 +2,9 @@ import { toast } from "react-toastify";
 import { createSlice } from "@reduxjs/toolkit";
 import {
   createCategoryAction,
+  deleteCategoryAction,
   getAllCategoriesAction,
+  updateCategoryAction,
 } from "../Action/categoryAction";
 const bookSlice = createSlice({
   name: "category",
@@ -10,6 +12,9 @@ const bookSlice = createSlice({
     category: null,
     categories: [],
     getCategory: null,
+    updateLoading:false,
+    createLoading:false,
+    deleteLoading:false,
     loading: false,
     error: null,
     success: true,
@@ -17,16 +22,24 @@ const bookSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      //  ------------------- Login User ----------------
       .addCase(createCategoryAction.pending, (state) => {
-        state.loading = true;
+        state.createLoading = true;
         state.error = null;
       })
       .addCase(createCategoryAction.fulfilled, (state) => {
-        state.loading = false;
+        state.createLoading = false;
         state.success = true;
-        // state.currentUser = payload.data;
       })
+      .addCase(updateCategoryAction.pending, (state) => {
+        state.updateLoading = true;
+        state.error = null;
+      })
+      .addCase(updateCategoryAction.fulfilled, (state) => {
+        state.updateLoading = false;
+        state.success = true;
+    
+      })
+     
       .addCase(getAllCategoriesAction.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -34,17 +47,26 @@ const bookSlice = createSlice({
       .addCase(getAllCategoriesAction.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.success = true;
-      
+        
         state.categories = payload.data;
-        // state.currentUser = payload.data;
       })
-
+ .addCase(deleteCategoryAction.pending, (state) => {
+        state.deleteLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteCategoryAction.fulfilled, (state) => {
+        state.deleteLoading = false;
+        state.success = true;
+    
+      })
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, { payload }) => {
-  
-          let error = payload.error;
           state.loading = false;
+          state.updateLoading=false
+          state.createLoading=false
+          state.deleteLoading=false
+          let error = payload.error
           if (error) {
             if (Array.isArray(error)) {
               error.forEach((err) => toast.error(err.message));

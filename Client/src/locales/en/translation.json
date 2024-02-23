@@ -1,5 +1,19 @@
 {
   "downloadBook": "Download Book",
+  "search": {
+    "siteSearch": "Site Search",
+    "searchResultsFor": "Search results for",
+    "resultsFound": "results found",
+    "noBooksToPreview": "No books to preview",
+    "by": "by",
+    "reviews": "reviews",
+    "author": "Author",
+    "level": "Level",
+    "books": "Books",
+    "in":"in",
+    "courses": "Courses",
+    "choose": "Choose"
+  },
   "homePage": {
     "searchFor": "Search for",
     "selectPlaceholder": "Select an option",
@@ -17,7 +31,11 @@
     "releaseDate": "Release Date",
     "mostInteractive": "Most Interactive",
     "books": "Books",
-    "mostDownloaded": "Most Downloaded"
+    "mostDownloaded": "Most Downloaded",
+    "sort_by_date": "Date",
+    "sort_by_downloads": "Downloads",
+    "sort_by_review_count": "Most Review",
+    "sort_by_average_rating": "Rating"
   },
   "programmingQuestionsPage": {
     "pageTitle": "Programming Questions",
@@ -39,6 +57,7 @@
     "noCoursesMessage": "No courses to display currently"
   },
   "header": {
+    "suggest":"add Suggestion" ,
     "home": "Home",
     "courses": "Courses",
     "books": "Books",
@@ -49,7 +68,10 @@
     "addCategory": "Add Category",
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "profile":"profile",
+    "project":"project",
+    "admin":"admin"
   },
   "loginPage": {
     "loginTitle": "Login",
@@ -115,6 +137,10 @@
     "updateBook": "Update Book"
   },
   "addCategory": {
+    "deletedCategoryMsg": "Category deleted successfully",
+    "editCategory": "Edit Category",
+    "deleteCategoryBtn": "Delete Category",
+    "categoryImage" :"Upload Image",
     "addNewCategory": "Add New Category",
     "categoryName": "Category Name",
     "categoryNameRequired": "Category Name is required",
@@ -133,21 +159,37 @@
     "readerComments": "Reader Comments",
     "addComment": "Add Comment",
     "commentPlaceholder": "Add a comment..."
-  },
-  "addCourse": {
-    "addNewCourse": "Add New Course",
-    "courseName": "Course Name",
-    "courseDescription": "Course Description",
-    "instructor": "Instructor",
-    "coursePrice": "Course Price",
-    "selectCategory": "Select Category",
-    "whatYouWillLearn": "What You Will Learn",
-    "addLearnPoint": "Add Learn Point",
-    "removeLearnPoint": "Remove",
-    "coverImage": "Upload Cover Image",
-    "dropzoneText": "Drag and drop the cover image here or click to select",
-    "addCourseButton": "Add Course"
-  },
+  , "noReviews" :"there are no comments ...."
+},
+"addCourse": {
+  "addNewCourse": "Add New Course",
+  "courseName": "Course Name",
+  "courseSubTitle" :"Course Subtitle",
+  "courseDescription": "Course Description",
+  "instructor": "Instructor",
+  "coursePrice": "Course Price",
+  "selectCategory": "Select Category",
+  "courseDuration": "Duration",
+  "days": "Days",
+  "hours": "Hours",
+  "courseLevel": "Course Level",
+  "selectCourseLevel": "Level",
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advanced": "Advanced",
+  "courseLink": "Course Link",
+  "courseDurationUnit": "Duration Unit",
+  "selectDuration": "Select Duration ",
+  "courseDurationDays": "Number of Days",
+  "courseDurationHours": "Number of Hours",
+  "whatYouWillLearn": "What You Will Learn",
+  "removeLearnPoint": "Remove ",
+  "addLearnPoint": "Add Point",
+  "coverImage": "Cover Image",
+  "dropzoneText": "Drag and drop the image here or click to upload",
+  "addCourseButton": "Add Course",
+  "addedCourseMsg": "Course added successfully"
+},
   "editCourse": {
     "editCourse": "Edit Course",
     "courseName": "Course Name",
@@ -184,9 +226,35 @@
     "courseTitle": "Course Title"
   },
   "courseDetails": {
-    "aboutCourse": "About the Course",
-    "whatYouWillLearn": "What You Will Learn"
+    "aboutCourse": "About Course",
+    "whatYouWillLearn": "What You Will Learn",
+    "level": "Level",
+    "duration": "Duration",
+    "link": "Course Link",
+    "addRate":"Add You'r Rate",
+    "editRate":"Add You'r Rate",
+    "Rate" :"Course Rate"
   },
+  "Rate":{
+    "addRate":"Add Your Rate",
+    "editRate":"Edit Your Rate",
+    "Rate" :"Rate",
+    "yourRate" :"Your Rate"
+  },
+  "Suggest":{
+    "visit":"Visit",
+    "ManageSuggestedCourses":"Manage Suggested Courses",
+    "ManageSuggestedBooks":"Manage Suggested Books",
+    "accept":"Accept",
+    "reject":"Reject",
+    "showSuggestions":"Show Suggestion",
+    "show":"preview",
+    "choose": "Choose",
+    "book": "Book",
+    "course": "Course",
+    "suggestBook" :"Suggest new book",
+    "suggestCourse" :"Suggest new course"
+      },
   "searchResults": {
     "pageTitle": "Search Results",
     "courseResults": "Course Results",
@@ -196,13 +264,15 @@
   "timeAgo": {
     "now": "Now",
     "minutesAgo": "{{count}} minutes ago",
-    "hoursAgo": "{{count}} hour{{count === 1 ? '' : 's'}} ago",
+    "hoursAgo": "{{count}} hour ago",
     "daysAgo": "{{count}} day ago",
     "monthsAgo": "{{count}} month ago",
     "yearsAgo": "{{count}} year ago"
   },
   "questionSection": {
     "question": "Question",
+    "any your question?":"Any your question?",
+    "join here":"join here",
     "answers": "Reader Answers",
     "noAnswers": "No answers at the moment.",
     "vote": "Vote",
@@ -212,5 +282,10 @@
     "in": "in",
     "addReply": "Add Reply",
     "sendReply": "Send reply"
+  },
+  "projectpreview":{
+    "addnewproject":"Add New project",
+    "showcode" :"Show Code",
+    "add code to show it":"add code to show it"
   }
 }

@@ -22,7 +22,7 @@ const CommentSection = ({ onCommentSubmit,placeholder,buttonText }) => {
   };
 
   return (
-    <div>
+    <div className="comment-book-dev">
       <Form onSubmit={handleSubmit(onSubmit)}>
         <Form.Group controlId="comment mb-2">
           <Form.Control

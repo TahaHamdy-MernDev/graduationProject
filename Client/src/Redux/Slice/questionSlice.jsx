@@ -37,7 +37,6 @@ const questionSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, { payload }) => {
-        
           let error = payload.error;
           state.loading = false;
           if (error) {

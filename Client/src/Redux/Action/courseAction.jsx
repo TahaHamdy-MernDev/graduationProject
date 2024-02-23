@@ -38,6 +38,39 @@ export const updateCourseByIdAction = createAsyncThunk(
     }
   }
 );
+export const getCoursesSuggestions = createAsyncThunk(
+  "courses/get-suggestions",
+  async (bookData, { rejectWithValue }) => {
+    try {
+      const response = await Api.get("/courses/get-suggestion");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const acceptCourseSuggestionAction = createAsyncThunk(
+  "courses/accept/:id",
+  async ({ _id}, { rejectWithValue }) => {
+    try {
+      const response = await Api.put(`/courses/accept/${_id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const updateCourseRateByIdAction = createAsyncThunk(
+  "courses/:id",
+  async ({ _id, rating }, { rejectWithValue }) => {
+    try {
+      const response = await Api.put(`/courses/${_id}`, {rating});
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 export const deleteCourseByIdAction = createAsyncThunk(
   "courses/delete/:id",
   async (_id, { rejectWithValue }) => {

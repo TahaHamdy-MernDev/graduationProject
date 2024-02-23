@@ -52,8 +52,7 @@ exports.logOutCtrl = asyncHandler(async (req, res) => {
         return res.status(500).json({ success: false, message: 'Logout failed' });
       }})
   res.clearCookie("jwt")
-  // res.success()
   const clientUrl = req.headers.origin || req.headers.referer;
-  res.redirect(`${clientUrl}register`);
+  res.redirect(`${clientUrl}login`);
 });
 

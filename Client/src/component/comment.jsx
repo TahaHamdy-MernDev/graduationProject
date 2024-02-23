@@ -10,36 +10,10 @@ const Question = ({ answer, onReply, onVote }) => {
   };
 
   return (
-    // <Card>
-    //   <Card.Body>
-    //     <Card.Text>{comment.text}</Card.Text>
-    //     <Button variant="primary" onClick={() => onVote(comment.id)}>
-    //       Vote
-    //     </Button>
-    //     <Form.Group className="mt-2">
-    //       <Form.Control
-    //         type="text"
-    //         placeholder="Reply..."
-    //         value={newReply}
-    //         onChange={(e) => setNewReply(e.target.value)}
-    //       />
-    //       <Button variant="info" className="mt-2" onClick={handleReply}>
-    //         Reply
-    //       </Button>
-    //     </Form.Group>
-    //     {comment.replies && comment.replies.length > 0 && (
-    //       <div className="mt-3">
-    //         <h6>Replies:</h6>
-    //         {comment.replies.map((reply) => (
-    //           <Comment key={reply.id} comment={reply} onReply={onReply} onVote={onVote} />
-    //         ))}
-    //       </div>
-    //     )}
-    //   </Card.Body>
-    // </Card>
-    <Card>
+   
+    <Card className='cardcomment'>
     <Card.Body>
-      <Card.Text>{answer.text}</Card.Text>
+      <Card.Text className='card-title'>{answer.text}</Card.Text>
       <Button variant="primary" onClick={() => onVote(answer._id)}>
         Vote
       </Button>

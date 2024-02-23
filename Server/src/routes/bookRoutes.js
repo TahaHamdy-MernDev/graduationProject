@@ -22,6 +22,9 @@ router.patch(
   validate(updateBookKeys),
   bookCtrl.updateBookById
 );
+router.put('/accept/:id',authorizeAdmin,bookCtrl.acceptUserSuggestion)
+router.get('/get-suggestions',authorizeAdmin,bookCtrl.getUserBooksSuggestions)
+router.put('/:id',authenticate,bookCtrl.updateRateById);
 router.get('/get-all',bookCtrl.getAllBooks)
 router.post("/leave-comment/:id", authenticate, bookCtrl.addReview);
 router.post("/download/:id", bookCtrl.download);

@@ -1,82 +1,95 @@
 import { toast } from "react-toastify";
 
 import { createSlice } from "@reduxjs/toolkit";
-import { createCourseAction, deleteCourseByIdAction, fetchCoursesAction, updateCourseByIdAction } from "../Action/courseAction";
+import { acceptCourseSuggestionAction, createCourseAction, deleteCourseByIdAction, fetchCoursesAction, getCoursesSuggestions, updateCourseByIdAction, updateCourseRateByIdAction } from "../Action/courseAction";
 const courseSlice = createSlice({
   name: "course",
   initialState: {
     course: null,
     courses: [],
+    suggestions:[],
     getCourses: null,
-    loading: false,
+    loading:false,
+    addCourseLoading: false,
+    editCourseLoading: false,
+    deleteLoading: false,
+    fetchCourseLoading: false,
+    updateCourseRateLoading: false,
+    getCoursesSuggestionsLoading: false,
+    acceptCourseSuggestionActionLoading: false,
     error: null,
     success: true,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      //  ------------------- Create Course ----------------
       .addCase(createCourseAction.pending, (state) => {
-        state.loading = true;
+        state.addCourseLoading = true;
         state.error = null;
       })
       .addCase(createCourseAction.fulfilled, (state) => {
-        state.loading = false;
+        state.addCourseLoading = false;
         state.success = true;
       })
-      //  ------------------- Get All Courses  ----------------
+      .addCase(updateCourseRateByIdAction.pending, (state) => {
+        state.updateCourseRateLoading = true;
+        state.error = null;
+      })
+      .addCase(updateCourseRateByIdAction.fulfilled, (state) => {
+        state.updateCourseRateLoading = false;
+        state.success = true;
+      })
       .addCase(fetchCoursesAction.pending, (state) => {
-        state.loading = true;
+        state.fetchCourseLoading = true;
         state.error = null;
       })
       .addCase(fetchCoursesAction.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.fetchCourseLoading = false;
         state.success = true;
         state.courses = payload.data;
       })
-      //  ------------------- Update Book  ----------------
+      .addCase(getCoursesSuggestions.pending, (state) => {
+        state.getCoursesSuggestionsLoading = true;
+        state.error = null;
+      })
+      .addCase(getCoursesSuggestions.fulfilled, (state, { payload }) => {
+        state.getCoursesSuggestionsLoading = false;
+        state.success = true;
+        state.suggestions = payload.data;
+      })
+      .addCase(acceptCourseSuggestionAction.pending, (state) => {
+        state.acceptCourseSuggestionActionLoading = true;
+        state.error = null;
+      })
+      .addCase(acceptCourseSuggestionAction.fulfilled, (state, { payload }) => {
+        state.acceptCourseSuggestionActionLoading = false;
+        state.success = true;
+
+      })
       .addCase(updateCourseByIdAction.pending, (state) => {
-        state.loading = true;
+        state.editCourseLoading = true;
         state.error = null;
       })
       .addCase(updateCourseByIdAction.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.editCourseLoading = false;
         state.success = true;
       })
-      //  ------------------- Delete Book  ----------------
       .addCase(deleteCourseByIdAction.pending, (state) => {
-        state.loading = true;
+        state.deleteLoading = true;
         state.error = null;
       })
       .addCase(deleteCourseByIdAction.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.deleteLoading = false;
         state.success = true;
       })
-    //   //  ------------------- Delete Book  ----------------
-    //   .addCase(addCommentBookAction.pending, (state) => {
-    //     state.loading = true;
-    //     state.error = null;
-    //   })
-    //   .addCase(addCommentBookAction.fulfilled, (state, { payload }) => {
-    //     state.loading = false;
-    //     state.success = true;
-    //   })
-      // //  ------------------- Rate Book  ----------------
-      // .addCase(downloadBookAction.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(downloadBookAction.fulfilled, (state, { payload }) => {
-      //   state.loading = false;
-      //   state.success = true;
-      // })
-
-      .addMatcher(
-        (action) => action.type.endsWith("/rejected"),
-        (state, { payload }) => {
-  
-          let error = payload.error;
+      .addMatcher((action) => action.type.endsWith("/rejected"),(state, { payload }) => {
+        state.addCourseLoading =false
+        state.deleteLoading =false
+        
           state.loading = false;
+          state.getCoursesSuggestionsLoading = false;
+          state.acceptCourseSuggestionActionLoading = false;
+  let error = payload?.error;
           if (error) {
             if (Array.isArray(error)) {
               error.forEach((err) => toast.error(err.message));

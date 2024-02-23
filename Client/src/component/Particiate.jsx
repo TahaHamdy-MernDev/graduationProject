@@ -48,7 +48,7 @@ const Particiate = () => {
             alt="img"
           />
           <h3 style={{ color: "rgba(76, 175, 175, 0.5)" }}>
-           Mohammad alsayed
+           Mohammad sayed
           </h3>
           <p>52  <BsArrowDownCircle/> </p>
           </div>
@@ -70,7 +70,7 @@ const Particiate = () => {
               alt="img"
             />
             <h3 style={{ color: "rgba(76, 175, 175, 0.5)" }}>
-             Mayar al-tamimi
+             Ali tamimi
             </h3>
             <p>32  <BsArrowDownCircle/> </p>
             </div>
@@ -81,7 +81,7 @@ const Particiate = () => {
               alt="img"
             />
             <h3 style={{ color: "rgba(76, 175, 175, 0.5)" }}>
-             Haifa abual-rub
+             Yafa Khaled
             </h3>
             <p>33 <BsArrowDownCircle/> </p>
             </div>
@@ -92,7 +92,7 @@ const Particiate = () => {
               alt="img"
             />
             <h3 style={{ color: "rgba(76, 175, 175, 0.5)" }}>
-             Ghada Abu al-rub
+             Ghada Ahmad
             </h3>
             <p>598 <BsArrowDownCircle/> </p>
             </div>

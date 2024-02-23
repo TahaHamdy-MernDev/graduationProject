@@ -14,7 +14,7 @@ function QuestionCard() {
 
         <div  className="ques-card-div">
           <h3>ربط جهاز الaccess control بمشروع ويب</h3>
-          <p>بواسطة محمود مرسي 2, 27 نوفمبر</p>
+          <p>بواسطة محمد علي 2, 27 نوفمبر</p>
         </div>
       </div>
 

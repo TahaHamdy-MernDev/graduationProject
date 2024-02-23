@@ -1,82 +1,112 @@
-import {  Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import Nav1 from "./component/nav";
 import Home from "./component/home";
 import Footer from "./component/footer";
 import Form1 from "./component/login";
 import Registration from "./component/register";
-import Book from "./component/books";
+
 import Codelang from "./component/language";
 import Ques from "./component/question";
-import Course from "./component/courses";
-import Details from "./component/corse-details";
-import Details1 from "./component/course2";
-import Details2 from "./component/course3";
-import Details3 from "./component/course4";
-import Details4 from "./component/course5";
-import Details5 from "./component/courseDetails";
+
 import AdminPage from "./component/admunpage";
-import AdminCourse from "./component/admincourse";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { currentUserAction } from "./Redux/Action/userAction";
-import CreateBook from "./component/createBook";
+
 import AddCategory from "./component/addCategory";
-import EditBook from "./component/editBook";
-import BookDetailPage from "./component/bookDetailPage";
-import AddCourse from "./component/addCourse"; 
-import EditCourse from "./component/editCourse";
-import CourseDetails from "./component/courseDetails";
+
 // import DefaultComponent from "./component/test";
 import QuestionDetails from "./component/QuestionDetails";
 import QuestionPreview from "./component/QuestionDetails";
 import SearchResults from "./component/SearchResults";
+//Books
+import BookDetailPage from "./component/Books/bookDetailPage";
+import Book from "./component/Books/books";
+import EditBook from "./component/Books/editBook";
+import CreateBook from "./component/Books/createBook";
+//Suggestions
+import AddSuggestions from "./component/Suggestions/addSuggestions";
+import { BookSuggestionList } from "./component/Suggestions/BookSuggestionList";
+import BookSuggestionPreview from "./component/Suggestions/BookSuggestionPreview";
+import { CourseSuggestionList } from "./component/Suggestions/CourseSuggestionList";
+//Courses
+import AdminCourse from "./component/Courses/admincourse";
+import AddCourse from "./component/Courses/addCourse";
+import EditCourse from "./component/Courses/editCourse";
+import CourseDetails from "./component/Courses/courseDetails";
+import Course from "./component/Courses/courses";
+import { CourseSuggestionPreview } from "./component/Suggestions/CourseSuggestionPreview";
+import { CategorySearch } from "./component/CategorySearch";
+import Profile from "./component/profile";
+import ProjectPreview from "./component/Code/ProjectPreview";
 
 function App() {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(currentUserAction())
+    dispatch(currentUserAction());
   }, [dispatch]);
   return (
-  <>    <Nav1  user={currentUser}/>
+    <>
+      {" "}
+      <Nav1 user={currentUser} />
+      <Routes>
+        <Route path="/create-book" element={<CreateBook />} />
+        <Route path="/comments" element={<QuestionDetails />} />
+        <Route path="/edit-book/:id" element={<EditBook />} />
+        <Route path="/add-category" element={<AddCategory />} />
+        <Route path="/book-details/:id" element={<BookDetailPage />} />
+        <Route path="/create-course" element={<AddCourse />} />
+        <Route path="/edit-course/:id" element={<EditCourse />} />
+        <Route path="/admin-course" element={<AdminCourse />} />
+        <Route path="/question-preview/:id" element={<QuestionPreview />} />
+        {currentUser?.role === "Admin" && (
+          <>
+           <Route path="/admincourse" element={<AdminCourse />} />
+            <Route path="/all-books" element={<AdminPage />} />
+            <Route path="/all-suggestions-books" element={<BookSuggestionList />} />
+            <Route path="/all-suggestions-courses" element={<CourseSuggestionList />} />
+            <Route path="/preview-book/:id" element={<BookSuggestionPreview />} />
+            <Route path="/preview-course/:id" element={<CourseSuggestionPreview />} />
+          </>
+        )}
+        <Route path="/search-results" element={<SearchResults />} />
+        <Route path="/course-details/:id" element={<CourseDetails />} />
+        <Route
+          path="/register"
+          element={currentUser ? <Navigate to="/" /> : <Registration />}
+        />
+        <Route
+          path="/login"
+          element={currentUser ? <Navigate to={"/"} /> : <Form1 />}
+        />
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<Book />} />
+        <Route path="/language" element={<Codelang />} />
+        <Route path="/question" element={<Ques />} />
+        <Route path="/courses" element={<Course />} />
+        <Route
+          path="/add-suggestions"
+          element={currentUser ? <AddSuggestions /> : <Navigate to={"/"} />}
+        />
+        
+        {currentUser?._id &&( 
+          <>
+          <Route path="/profile/:userId" element={<Profile />} />
+            <Route path="/preview-project" element={<ProjectPreview />} />
+          </>
+        
+        ) 
 
-        <Routes>
-          {/* new */}
-          <Route path="/create-book" element={<CreateBook />} /> {/* done  */}
-          <Route path="/comments" element={<QuestionDetails />} /> {/* done  */}
-          <Route path="/edit-book/:id" element={<EditBook />} />{/* done  */}
-          <Route path="/add-category" element={<AddCategory/>} />{/* done  */}
-          <Route path="/book-details/:id" element={<BookDetailPage/>} />{/* done  */}
-          <Route path="/create-course" element={<AddCourse/>} />{/* done  */}
-          <Route path="/edit-course/:id" element={<EditCourse/>} /> {/* done  */}
-          <Route path="/admin-course" element={<AdminCourse />} />{/* done  */}
-          <Route path="/question-preview/:id" element={<QuestionPreview />} /> {/* done  */}
-          <Route path="/all-books" element={<AdminPage />} />{/* done  */}
-          <Route path="/search-results" element={<SearchResults/>} />{/* done  */}
-          {/* new */}
-          <Route path="/course-details/:id" element={<CourseDetails />} />{/* done  */}
-          <Route path="/register" element={currentUser ? <Navigate to="/" /> : <Registration />}/>{/* done  */}
-          <Route path="/login" element={currentUser ? <Navigate to={"/"} /> : <Form1 />} />{/* done  */}
-          <Route path="/" element={<Home />} />{/* done  */}
-          <Route path="/books" element={<Book />} />{/* done  */}
-          <Route path="/language" element={<Codelang />} />{/* done  */}
-          <Route path="/question" element={<Ques />} />{/* done  */}
-          <Route path="/courses" element={<Course />} />{/* done  */}
-
-          {/* <Route path="/corse-details" element={<Details />} />
-          <Route path="/course2" element={<Details1 />} />
-          <Route path="/course3" element={<Details2 />} />
-          <Route path="/course4" element={<Details3 />} />
-          <Route path="/course5" element={<Details4 />} />
-          <Route path="/courses6" element={<Details5 />} />
-         */}
-          <Route path="/admincourse" element={<AdminCourse />} />
-        </Routes>
-
-        <Footer />
-  </>
-
+        }
+        <Route path="/category/:category" element={<CategorySearch />} />
+       
+      
+       
+      </Routes>
+      <Footer />
+    </>
   );
 }
 

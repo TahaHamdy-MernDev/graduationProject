@@ -15,8 +15,8 @@ i18n
         translation: arTranslation,
       },
     },
-    lng: 'ar', // Set the default language
-    fallbackLng: 'ar', // Fallback language if the translation key is missing
+    lng: 'en', // Set the default language
+    fallbackLng: 'en', // Fallback language if the translation key is missing
     interpolation: {
       escapeValue: false, // React already safely escapes interpolated values
     },

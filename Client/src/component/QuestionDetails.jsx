@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Col, Row, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   upVoteQuestionAction,
   addAnswerAction,
@@ -69,25 +69,25 @@ const QuestionPreview = () => {
   const formatTimeAgo = (createdAt) => {
     const now = moment();
     const commentTime = moment(createdAt);
-    const diffInSeconds = now.diff(commentTime, 'seconds');
+    const diffInSeconds = now.diff(commentTime, "seconds");
 
     if (diffInSeconds < 60) {
-      return t('timeAgo.now');
+      return t("timeAgo.now");
     } else if (diffInSeconds < 60 * 60) {
       const diffInMinutes = Math.floor(diffInSeconds / 60);
-      return t('timeAgo.minutesAgo', { count: diffInMinutes });
+      return t("timeAgo.minutesAgo", { count: diffInMinutes });
     } else if (diffInSeconds < 24 * 60 * 60) {
       const diffInHours = Math.floor(diffInSeconds / (60 * 60));
-      return t('timeAgo.hoursAgo', { count: diffInHours });
+      return t("timeAgo.hoursAgo", { count: diffInHours });
     } else if (diffInSeconds < 24 * 60 * 30 * 60) {
       const diffInDays = Math.floor(diffInSeconds / (24 * 60 * 60));
-      return t('timeAgo.daysAgo', { count: diffInDays });
+      return t("timeAgo.daysAgo", { count: diffInDays });
     } else if (diffInSeconds < 24 * 60 * 30 * 12 * 60) {
       const diffInMonths = Math.floor(diffInSeconds / (24 * 60 * 30 * 60));
-      return t('timeAgo.monthsAgo', { count: diffInMonths });
+      return t("timeAgo.monthsAgo", { count: diffInMonths });
     } else {
       const diffInYears = Math.floor(diffInSeconds / (24 * 60 * 30 * 12 * 60));
-      return t('timeAgo.yearsAgo', { count: diffInYears });
+      return t("timeAgo.yearsAgo", { count: diffInYears });
     }
   };
 
@@ -96,125 +96,122 @@ const QuestionPreview = () => {
   }
 
   return (
-    <Row className="mb-3 border p-3 rounded" 
-    // dir={i18n.dir()}
+    <Row
+      className="mb-3 border p-3 rounded"
+      // dir={i18n.dir()}
     >
       <Col lg={6} md={12}>
-      <h4 className="mt-4">{t('questionSection.question')}</h4>
-        <div>
-          <p className="mb-1">{question?.text}</p>
-          <p>
-            {question?.answers.length} {t("questionSection.reply's")} | {question?.votes.length}   {t('questionSection.vote')}
-          </p>
-          &bull;{t('questionSection.by')} {" "}
-          <strong>
-            {question?.user?.firstName || question.firstName}{" "}
-            {question?.user?.lastName || question.lastName}
-          </strong>{" "}
-          {t('questionSection.in')} {new Date(question?.createdAt).toLocaleString()}
-        </div>
+        <div className="comment-container">
+          <h4 className="title-comment mt-4">
+            {t("questionSection.question")}
+          </h4>
+          <div>
+            <p className="mb-1">{question?.text}</p>
+            <p>
+              {question?.answers.length} {t("questionSection.reply's")} |{" "}
+              {question?.votes.length} {t("questionSection.vote")}
+            </p>
+            &bull;{t("questionSection.by")}{" "}
+            <strong>
+              {question?.user?.firstName || question.firstName}{" "}
+              {question?.user?.lastName || question.lastName}
+            </strong>{" "}
+            {t("questionSection.in")}{" "}
+            {new Date(question?.createdAt).toLocaleString()}
+          </div>
 
-        {currentUser && (
-          <>
-            <div className="mt-3">
-              <Button
-                color="primary"
-                disabled={question.votes.some(
-                  (vote) => vote.user.toString() === currentUser._id.toString()
-                )}
-                onClick={handleQuestionVote}
-              >
-               {t('questionSection.vote')}
-              </Button>{" "}
-              <Button color="info" onClick={handleReply}>
-              {t('questionSection.reply')}
-              </Button>
-            </div>
-            {showReplyInput && (
-              <Form.Group className="mt-3">
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  placeholder={t('questionSection.addReply')}
-                  value={reply}
-                  onChange={(e) => setReply(e.target.value)}
-                />
-                <Button className="mt-2" onClick={handleReplySubmit}>
-                {t('questionSection.sendReply')}
+          {currentUser && (
+            <>
+              <div className="mt-3">
+                <Button
+                  color="primary"
+                  disabled={question.votes.some(
+                    (vote) =>
+                      vote.user.toString() === currentUser._id.toString()
+                  )}
+                  onClick={handleQuestionVote}
+                >
+                  {t("questionSection.vote")}
+                </Button>{" "}
+                <Button color="info" onClick={handleReply}>
+                  {t("questionSection.reply")}
                 </Button>
-              </Form.Group>
-            )}
-          </>
-        )}
+              </div>
+              {showReplyInput && (
+                <Form.Group className="mt-3">
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder={t("questionSection.addReply")}
+                    value={reply}
+                    onChange={(e) => setReply(e.target.value)}
+                  />
+                  <Button className="mt-2" onClick={handleReplySubmit}>
+                    {t("questionSection.sendReply")}
+                  </Button>
+                </Form.Group>
+              )}
+            </>
+          )}
+        </div>
       </Col>
+
       <Col lg={6} md={12}>
         {question ? (
           <>
-            <h4 className="mt-4">{t('questionSection.answers')}</h4>
-            {question.answers.length > 0 ? (
-              question.answers.map((answer, index) => (
-                <div key={index} className="mb-3 border p-3 rounded">
-                  <span className="text-muted mb-2 d-flex justify-content-between">
-                    <strong>
-                      <p>
-                        {answer.user.firstName} {answer.user.lastName}
-                      </p>
-                    </strong>{" "}
-                    &bull; {formatTimeAgo(answer.createdAt)}
-                  </span>
-                  <p className="mb-0">{answer.text}</p>
-                  <span className="d-flex justify-content-between align-items-center">
-                    {currentUser && (
-                      <Button
-                        color="primary"
-                        className="mt-2"
-                        onClick={() => handleVoteAnswer(answer._id)}
-                        disabled={question?.answers?.some((answer) =>
-                          answer.votes?.some(
-                            (vote) =>
-                              vote.user?._id.toString() ===
-                              currentUser?._id.toString()
-                          )
-                        )}
-                      >
-                       {t('questionSection.vote')}
-                      </Button>
-                    )}
-                    | {answer?.votes.length} {t('questionSection.vote')}
-                  </span>
-                </div>
-              ))
-            ) : (
-              <p>{t('questionSection.noAnswers')}</p>
-            )}
+            <div className="comment-container">
+              <h4 className="mt-4">{t("questionSection.answers")}</h4>
+              {question.answers.length > 0 ? (
+                question.answers.map((answer, index) => (
+                  <div key={index} className="mb-3 border p-3 rounded">
+                    <span className="text-muted mb-2 d-flex justify-content-between">
+                      <span className="d-flex">
+                        <Link to={`/profile/${answer?.user?._id}`}>
+                          <img
+                          title="show profile"
+                            src={answer?.user?.profileImage.url}
+                            width={"40"}
+                          />
+                        </Link>
+                        <strong>
+                          <p>
+                            {answer.user.firstName} {answer.user.lastName}
+                          </p>
+                        </strong>{" "}
+                      </span>
+                      &bull; {formatTimeAgo(answer.createdAt)}
+                    </span>
+                    <p className="mb-0">{answer.text}</p>
+                    <span className="d-flex justify-content-between align-items-center">
+                      {currentUser && (
+                        <Button
+                          color="primary"
+                          className="mt-2"
+                          onClick={() => handleVoteAnswer(answer._id)}
+                          disabled={question?.answers?.some((answer) =>
+                            answer.votes?.some(
+                              (vote) =>
+                                vote.user?._id.toString() ===
+                                currentUser?._id.toString()
+                            )
+                          )}
+                        >
+                          {t("questionSection.vote")}
+                        </Button>
+                      )}
+                      | {answer?.votes.length} {t("questionSection.vote")}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p>{t("questionSection.noAnswers")}</p>
+              )}
+            </div>
           </>
         ) : null}
       </Col>
     </Row>
   );
 };
-// const formatTimeAgo = (createdAt) => {
-//   const now = moment();
-//   const commentTime = moment(createdAt);
-//   const diffInSeconds = now.diff(commentTime, "seconds");
 
-//   if (diffInSeconds < 60) {
-//     return "الآن";
-//   } else if (diffInSeconds < 60 * 60) {
-//     const diffInMinutes = Math.floor(diffInSeconds / 60);
-//     return `${diffInMinutes}دقيقة `;
-//   } else if (diffInSeconds < 24 * 60 * 60) {
-//     const diffInHours = Math.floor(diffInSeconds / (60 * 60));
-//     return `${diffInHours} ساعة${diffInHours === 1 || ""} مضت`;
-//   } else if (diffInSeconds < 24 * 60 * 30 * 60) {
-//     const diffInDays = Math.floor(diffInSeconds / (24 * 60 * 60));
-//     return `${diffInDays} يوم`;
-//   } else if (diffInSeconds < 24 * 60 * 30 * 12 * 60) {
-//     const diffInMonths = Math.floor(diffInSeconds / (24 * 60 * 30 * 60));
-//     return `${diffInMonths} شهر `;
-//   } else {
-//     const diffInYears = Math.floor(diffInSeconds / (24 * 60 * 30 * 12 * 60));
-//     return `${diffInYears} سنه`;
-//   }
-// };
 export default QuestionPreview;

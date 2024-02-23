@@ -1,30 +1,51 @@
 import { toast } from "react-toastify";
 
 import { createSlice } from "@reduxjs/toolkit";
-import { addCommentBookAction, createBookAction, deleteBookAction, getAllBookAction, updateBookAction } from "../Action/bookAction";
+import { acceptBookSuggestionAction, addCommentBookAction, createBookAction, deleteBookAction, getAllBookAction, getBooksSuggestions, updateBookAction, updateBookRateByIdAction } from "../Action/bookAction";
 const bookSlice = createSlice({
   name: "book",
   initialState: {
     book: null,
     books: [],
+    suggestions:[],
     getBok: null,
     loading: false,
+    createBookLoading:false,
+    acceptBookSuggestionLoading:false,
     error: null,
     success: true,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
-      //  ------------------- Create Book ----------------
+    
       .addCase(createBookAction.pending, (state) => {
-        state.loading = true;
+        state.createBookLoading = true;
         state.error = null;
       })
       .addCase(createBookAction.fulfilled, (state) => {
-        state.loading = false;
+        state.createBookLoading = false;
         state.success = true;
       })
-      //  ------------------- Get All Books  ----------------
+  
+      .addCase(getBooksSuggestions.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(getBooksSuggestions.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+        state.suggestions = payload.data;
+      })
+      .addCase(acceptBookSuggestionAction.pending, (state) => {
+        state.acceptBookSuggestionLoading = true;
+        state.error = null;
+      })
+      .addCase(acceptBookSuggestionAction.fulfilled, (state, { payload }) => {
+        state.acceptBookSuggestionLoading = false;
+        state.success = true;
+      })
+ 
       .addCase(getAllBookAction.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -34,7 +55,15 @@ const bookSlice = createSlice({
         state.success = true;
         state.books = payload.data;
       })
-      //  ------------------- Update Book  ----------------
+
+      .addCase(updateBookRateByIdAction.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateBookRateByIdAction.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.success = true;
+      })
       .addCase(updateBookAction.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -43,16 +72,14 @@ const bookSlice = createSlice({
         state.loading = false;
         state.success = true;
       })
-      //  ------------------- Delete Book  ----------------
       .addCase(deleteBookAction.pending, (state) => {
-        state.loading = true;
+        state.deleteBookLoading = true;
         state.error = null;
       })
       .addCase(deleteBookAction.fulfilled, (state, { payload }) => {
-        state.loading = false;
+        state.deleteBookLoading = false;
         state.success = true;
       })
-      //  ------------------- Delete Book  ----------------
       .addCase(addCommentBookAction.pending, (state) => {
         state.loading = true;
         state.error = null;
@@ -61,21 +88,15 @@ const bookSlice = createSlice({
         state.loading = false;
         state.success = true;
       })
-      // //  ------------------- Rate Book  ----------------
-      // .addCase(downloadBookAction.pending, (state) => {
-      //   state.loading = true;
-      //   state.error = null;
-      // })
-      // .addCase(downloadBookAction.fulfilled, (state, { payload }) => {
-      //   state.loading = false;
-      //   state.success = true;
-      // })
 
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
         (state, { payload }) => {
-          let error = payload.error;
+       
           state.loading = false;
+          state.createBookLoading = false;
+          state.acceptBookSuggestionLoading = false;
+   let error = payload?.error;
           if (error) {
             if (Array.isArray(error)) {
               error.forEach((err) => toast.error(err.message));

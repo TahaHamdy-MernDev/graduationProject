@@ -25,6 +25,41 @@ export const getAllBookAction = createAsyncThunk(
     }
   }
 );
+
+
+export const updateBookRateByIdAction = createAsyncThunk(
+  "books/:id",
+  async ({ _id, rating }, { rejectWithValue }) => {
+    try {
+      const response = await Api.put(`/books/${_id}`, {rating});
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const getBooksSuggestions = createAsyncThunk(
+  "books/get-suggestions",
+  async (bookData, { rejectWithValue }) => {
+    try {
+      const response = await Api.get("/books/get-suggestions");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const acceptBookSuggestionAction = createAsyncThunk(
+  "books/accept/:id",
+  async ({ _id}, { rejectWithValue }) => {
+    try {
+      const response = await Api.put(`/books/accept/${_id}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 export const updateBookAction = createAsyncThunk(
   "books/update/:id",
   async ({ bookId, bookData }, { rejectWithValue }) => {

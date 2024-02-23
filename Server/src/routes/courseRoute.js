@@ -1,6 +1,5 @@
-const { authorizeAdmin } = require("../middleware/auth");
+const { authorizeAdmin,authenticate } = require("../middleware/auth");
 const courseCtrl =require('../controllers/courseController');
-const { authenticate } = require("passport");
 const { createCourseKeys, updateCourseKeys } = require("../utils/validation/courseValidation");
 const { validate } = require("../utils/validate");
 const { upload } = require("../utils/upload");
@@ -19,6 +18,9 @@ router.patch(
   validate(updateCourseKeys),
   courseCtrl.updateCourseById
 );
+router.put('/accept/:id',authorizeAdmin,courseCtrl.acceptUserSuggestion)
+router.get('/get-suggestion',authorizeAdmin,courseCtrl.getUserCoursesSuggestions)
+router.put('/:id',authenticate,courseCtrl.updateRateById);
 router.get('/get-all',courseCtrl.getAllCourses)
 router.post('/request',authenticate, courseCtrl.requestCourse)
 router.delete('/delete/:id',authorizeAdmin, courseCtrl.deleteCourseById)

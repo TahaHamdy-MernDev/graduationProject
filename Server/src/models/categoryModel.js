@@ -8,6 +8,14 @@ const categorySchema = new mongoose.Schema(
     categoryDescription: {
       type: String,
     },
+    keys: [{ type: String }],
+    categoryImage:{
+      type: Object,
+      default: {
+        url: "",
+        publicId: null,
+      },
+    }
   },
   {
     timestamps: true,

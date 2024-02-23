@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import logo from "../images/b3.jpg";
+import logo from "../images/d1logox.png";
 import { Container, Col, Row } from "react-bootstrap";
 import { FaGoogle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { loginUserAction } from "../Redux/Action/userAction";
+import { currentUserAction, loginUserAction } from "../Redux/Action/userAction";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
@@ -24,6 +24,7 @@ function Form1() {
     dispatch(loginUserAction(data))
       .unwrap()
       .then(() => {
+        dispatch(currentUserAction())
         navigate("/");
       })
       .catch((err) => {
